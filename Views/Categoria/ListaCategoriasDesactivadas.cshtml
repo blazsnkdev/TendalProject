@@ -1,0 +1,195 @@
+@model IEnumerable<TendalProject.Models.Categorium>
+
+@{
+    ViewData["Title"] = "Categorías Desactivadas";
+}
+
+<h1>Categorías Desactivadas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha de Registro</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.IdCategoria</td>
+                <td>@categoria.NombreCategoria</td>
+                <td>@categoria.FechaRegistro?.ToString("dd/MM/yyyy")</td>
+                <td>@categoria.Estado</td>
+                <td>
+                    <form asp-action="ActivarCategoria" asp-route-id="@categoria.IdCategoria" method="post"
+                        style="display:inline;">
+                        <button type="submit" class="btn btn-danger"
+                            onclick="return confirm('¿Estás seguro de que deseas activar esta categoría?');">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li><a href="@Url.Action("ListaCategoriasDesactivadas", new { pageNumber = ViewBag.CurrentPage - 1 })"><i
+                        class="fas fa-chevron-left"></i> Anterior</a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i> Anterior</a></li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="active"><a href="#">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("ListaCategoriasDesactivadas", new { pageNumber = i })">@i</a></li>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li><a href="@Url.Action("ListaCategoriasDesactivadas", new { pageNumber = ViewBag.CurrentPage + 1 })"><i
+                        class="fas fa-chevron-right"></i> Siguiente</a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-right"></i> Siguiente</a></li>
+        }
+    </ul>
+</div>
+
+    <a asp-action="ListaCategorias" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+<style>
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        /* Verde oscuro */
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+        /* Color amarillo claro */
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: #000000;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .btn-success {
+        background-color: #0e7913;
+        border-color: #0e7913;
+        color: #fff;
+        border-radius: 20px;
+    }
+
+    .btn-primary, .btn-danger {
+        border-radius: 20px; /* Botones redondeados */
+    }
+
+    .btn-success:hover {
+        background-color: #0a6211;
+        border-color: #0a6211;
+    }
+
+    .btn-secondary {
+        background-color: #f8f9fa;
+        border-color: #d6d6d6;
+        color: #0e7913;
+    }
+
+    .btn-secondary:hover {
+        background-color: #e2e6ea;
+        border-color: #d6d6d6;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        color: #0e7913;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid #0e7913;
+        border-radius: 5px;
+    }
+
+    .pagination li a:hover {
+        background-color: #0e7913;
+        color: white;
+    }
+
+    .pagination .active a {
+        background-color: #0e7913;
+        color: white;
+        border: 1px solid #0e7913;
+    }
+
+    .pagination .disabled a {
+        color: #cccccc;
+        pointer-events: none;
+        border: 1px solid #cccccc;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

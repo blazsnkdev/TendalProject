@@ -1,0 +1,99 @@
+@model IEnumerable<TendalProject.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Mis Pedidos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!Model.Any())
+{
+    <p>No tienes pedidos con estado "Activo".</p>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="row">
+            @foreach (var pedido in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="pedido-item">
+                        <div class="pedido-header">
+                            <strong>Pedido #@pedido.NumeroPedido</strong> - <span>@pedido.FechaPedido?.ToString("dd/MM/yyyy")</span>
+                        </div>
+                        <div class="pedido-details">
+                            <div><strong>Producto:</strong> @pedido.IdProductoNavigation.Nombre</div>
+                            <div><strong>Cantidad:</strong> @pedido.Cantidad</div>
+                            <div><strong>Importe:</strong> @pedido.Importe.ToString("C2")</div>
+                            <div><strong>Estado:</strong> @pedido.IdEstadoNavigation.NombreEstado</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .pedido-item {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        height: 100%; /* Para que todos los cards tengan la misma altura */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .pedido-header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .pedido-header span {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .pedido-details {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .pedido-details div {
+        margin-bottom: 5px;
+    }
+
+    .pedido-item:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Colores y diseño inspirados en la vista del carrito */
+    .pedido-item {
+        background-color: #f8f9fa; /* Fondo gris claro similar al carrito */
+        border: 1px solid #dee2e6; /* Borde gris claro */
+    }
+
+    .pedido-header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0e7913; /* Verde similar al carrito */
+    }
+
+    .pedido-details {
+        color: #555555; /* Gris claro */
+    }
+
+    .pedido-item:hover {
+        background-color: #ffe066; /* Amarillo cuando pasa el ratón */
+    }
+</style>

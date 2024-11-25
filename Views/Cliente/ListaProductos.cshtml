@@ -1,0 +1,224 @@
+@model IEnumerable<TendalProject.Models.Producto>
+
+@{
+    ViewBag.Title = "Lista de Productos";
+}
+
+<style>
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        padding: 20px;
+        margin-bottom: 30px;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: scale(1.07);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+        background-color: #0e7913;
+        border-color: #0e7913;
+        color: white;
+        margin-top: 10px;
+        border-radius: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #9deca1;
+        border-color: #9deca1;
+    }
+
+    .card-img-top {
+        width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.1);
+    }
+
+    .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #175210;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 1000;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+    }
+
+    .notification.show {
+        opacity: 1;
+    }
+
+    /* Estilos para el filtro por categoría y la barra de búsqueda */
+    .search-container {
+        display: flex;
+        justify-content: center; /* Centrado de los elementos */
+        align-items: center;
+        gap: 15px; /* Espacio entre los elementos */
+        width: 100%; /* Asegura que ocupe todo el espacio disponible */
+        max-width: 800px; /* Establece un límite de ancho */
+        margin: 0 auto; /* Centrado horizontal */
+    }
+
+    .filtro-categoria select,
+    .search-container input {
+        width: 250px; /* Ajustar el tamaño de todos los elementos */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px; /* Bordes rectos para todos */
+        border: 1px solid #ddd;
+    }
+
+    .filtro-categoria select {
+        border-color: #ddd;
+    }
+
+    .filtro-categoria select:hover,
+    .search-container input:hover {
+        border-color: #0e7913;
+    }
+
+    .search-container input {
+        width: 250px; /* Reducir el tamaño de la barra de búsqueda */
+    }
+
+    .search-container button,
+    .btn-back {
+        background-color: #0e7913; /* Color de fondo */
+        border: none; /* Sin borde */
+        color: white; /* Color del texto */
+        padding: 8px 15px; /* Ajustar el tamaño */
+        font-size: 16px; /* Tamaño de fuente */
+        border-radius: 5px; /* Bordes redondeados */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        transition: background-color 0.3s; /* Transición suave */
+        text-decoration: none; /* Quitar subrayado */
+    }
+
+    .search-container button:hover,
+    .btn-back:hover {
+        background-color: #9deca1; /* Color al pasar el ratón */
+    }
+</style>
+
+<div class="container mt-5">
+
+    <!-- Barra de búsqueda, filtro de categoría y botón de volver -->
+    <div class="search-container">
+        <div class="filtro-categoria">
+            <select id="filtroCategoria" class="form-select" onchange="filtrarPorCategoria()">
+                <option value="0">Todas las categorías</option>
+                @foreach (var categoria in ViewBag.Categorias)
+                {
+                    <option value="@categoria.IdCategoria">@categoria.NombreCategoria</option>
+                }
+            </select>
+        </div>
+
+        <input type="text" id="searchInput" class="form-control" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+        
+ 
+        <a asp-controller="Cliente" asp-action="ListaProductos" class="btn-back">
+            Limpiar
+        </a>
+    </div>
+
+    <div id="lista-productos">
+        @await Html.PartialAsync("_ListaProductosTable", Model)
+    </div>
+</div>
+
+    <!-- Botón de Volver 
+<script src="//code.tidio.co/xwmxq8comgpzjguc1kl2ixe7i4hiywfs.js" async></script>
+-->
+
+<script src="//code.tidio.co/xole4wzkb323htwcgjzym5nh3gtovgvd.js" async></script>
+
+
+<script>
+    function filtrarPorCategoria() {
+        var categoria = document.getElementById("filtroCategoria").value;
+
+        $.ajax({
+            url: '@Url.Action("FiltrarPorCategoria", "Cliente")',
+            type: 'GET',
+            data: { categoria: categoria },
+            success: function (result) {
+                $('#lista-productos').html(result);
+            }
+        });
+    }
+
+    function buscarProducto() {
+        var searchQuery = document.getElementById("searchInput").value.trim();
+
+        if (searchQuery === "") {
+            $.ajax({
+                url: '@Url.Action("_ListaProductosTable", "Cliente")',
+                type: 'GET',
+                success: function(result) {
+                    $('#lista-productos').html(result);
+                }
+            });
+        } else {
+            $.ajax({
+                url: '@Url.Action("BuscarProductos", "Cliente")',
+                type: 'GET',
+                data: { query: searchQuery },
+                success: function(result) {
+                    $('#lista-productos').html(result);
+                }
+            });
+        }
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        buscarProducto();
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+        if (this.value.trim() === "") {
+            buscarProducto();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var notification = document.getElementById('notification');
+        
+        if (notification.innerHTML.trim() !== '') {
+            notification.style.display = 'block';
+            notification.classList.add('show');
+            setTimeout(function () {
+                notification.classList.remove('show');
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 500);
+            }, 3000);
+        }
+    });
+</script>

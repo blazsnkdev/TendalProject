@@ -1,0 +1,175 @@
+@model TendalProject.Models.Usuario
+
+<style>
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        font-size: 15px;
+    }
+
+    .form-container {
+        max-width: 600px;
+        width: 100%;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #0e7913;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: #fff;
+        border-radius: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #0e7913;
+        display: block;
+    }
+
+    .form-group input,
+    .form-group select {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #0e7913;
+        box-shadow: 0 0 5px rgba(14, 121, 19, 0.5);
+    }
+
+    .icon-label {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon-label i {
+        margin-right: 8px;
+        color: #0e7913;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .btn-warning {
+        background-color: #BF127B;
+        border-color: #BF127B;
+    }
+
+    .btn-warning:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .btn-primary,
+    .btn-warning {
+        border-radius: 20px;
+        color: #000000;
+    }
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h2>Editar Usuario</h2>
+        <form asp-controller="Usuario" asp-action="ActualizarUsuario" method="post">
+            <input type="hidden" asp-for="IdUsuario" />
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="NombreUsuario">
+                    <i class="fas fa-user"></i> Nombre único
+                </label>
+                <input asp-for="NombreUsuario" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="ApellidoPaterno">
+                    <i class="fas fa-user"></i> Apellido Paterno
+                </label>
+                <input asp-for="ApellidoPaterno" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="ApellidoMaterno">
+                    <i class="fas fa-user"></i> Apellido Materno
+                </label>
+                <input asp-for="ApellidoMaterno" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="Celular">
+                    <i class="fas fa-phone"></i> Número Celular
+                </label>
+                <input asp-for="Celular" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="Direccion">
+                    <i class="fas fa-map-marker-alt"></i> Dirección
+                </label>
+                <input asp-for="Direccion" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="Correo">
+                    <i class="fas fa-envelope"></i> Correo Electrónico
+                </label>
+                <input asp-for="Correo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label" asp-for="IdRol">
+                    <i class="fas fa-user-tag"></i> Rol
+                </label>
+                <select asp-for="IdRol" asp-items="ViewBag.RolId" class="form-control">
+                    <option value="" disabled selected>Seleccione</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="icon-label">
+                    <i class="fas fa-calendar"></i> Fecha de Registro
+                </label>
+                <input type="text" value="@Model.FechaRegistro?.ToString("yyyy-MM-dd")" class="form-control" readonly />
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a asp-action="ListaUsuarios" class="btn btn-warning">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,149 @@
+@model TendalProject.Models.Categorium
+
+@{
+    ViewData["Title"] = "Registrar Nueva Categoría";
+}
+
+<style>
+    /* Contenedor principal centrado */
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-size: 15px;
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #0e7913;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #0e7913;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #0e7913;
+        box-shadow: 0 0 5px rgba(14, 121, 19, 0.5);
+    }
+
+    .text-danger {
+        color: #BF127B;
+        text-align: center;
+    }
+
+    .btn-primary, .btn-warning, .btn-secondary {
+        border-radius: 20px;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .btn-warning {
+        background-color: #BF127B;
+        border-color: #BF127B;
+    }
+
+    .btn-warning:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .btn-secondary {
+        background-color: #5a6268;
+        border-color: #5a6268;
+    }
+
+    .btn-secondary:hover {
+        background-color: #4e555b;
+        border-color: #4e555b;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: space-between;
+    }
+
+    .form-group-half {
+        flex: 1;
+        min-width: 48%;
+    }
+
+    /* Ajustar select con opción de placeholder */
+    select.form-control option[disabled] {
+        display: none;
+    }
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h3>Registrar Nueva Categoría</h3>
+        <hr />
+        <form asp-action="RegistrarCategoria" method="post">
+            <div class="form-group">
+                <label asp-for="NombreCategoria">Nombre de la Categoría</label>
+                <input asp-for="NombreCategoria" class="form-control" placeholder="Ingresa el nombre de la categoría" />
+                <span asp-validation-for="NombreCategoria" class="text-danger"></span>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Registrar
+                </button>
+                <a asp-action="ListaCategorias" class="btn btn-warning">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

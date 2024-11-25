@@ -1,0 +1,155 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TendalProject
+build_property.RootNamespace = TendalProject
+build_property.ProjectDir = C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Administrador/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYWRvclxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Categoria/ActualizarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEFjdHVhbGl6YXJDYXRlZ29yaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Categoria/ListaCategorias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXExpc3RhQ2F0ZWdvcmlhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Categoria/ListaCategoriasDesactivadas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXExpc3RhQ2F0ZWdvcmlhc0Rlc2FjdGl2YWRhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Categoria/RegistrarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXFJlZ2lzdHJhckNhdGVnb3JpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Cliente/Carrito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDYXJyaXRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Cliente/Confirmacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDb25maXJtYWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Cliente/ListaProductos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxMaXN0YVByb2R1Y3Rvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Cliente/MisPedidos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxNaXNQZWRpZG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Cliente/_ListaProductosTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxfTGlzdGFQcm9kdWN0b3NUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Pedido/ListaPedidos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXExpc3RhUGVkaWRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Pedido/ListaPedidosEntregados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXExpc3RhUGVkaWRvc0VudHJlZ2Fkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Producto/ActualizarProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQWN0dWFsaXphclByb2R1Y3RvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Producto/ListaProductos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cTGlzdGFQcm9kdWN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Producto/ListaProductosEliminados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cTGlzdGFQcm9kdWN0b3NFbGltaW5hZG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Producto/RegistrarProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cUmVnaXN0cmFyUHJvZHVjdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Proveedor/ActualizarProveedor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXEFjdHVhbGl6YXJQcm92ZWVkb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Proveedor/ListaProveedores.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXExpc3RhUHJvdmVlZG9yZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Proveedor/ListaProveedoresDesactivados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXExpc3RhUHJvdmVlZG9yZXNEZXNhY3RpdmFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Proveedor/RegistrarProveedor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXFJlZ2lzdHJhclByb3ZlZWRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Usuario/ActualizarUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xBY3R1YWxpemFyVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Usuario/FormularioUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xGb3JtdWxhcmlvVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Usuario/ListaUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMaXN0YVVzdWFyaW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Usuario/ListaUsuariosEliminados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMaXN0YVVzdWFyaW9zRWxpbWluYWRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Usuario/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/blas/cibertec/sexto ciclo/proyecto integrador/proyecto final/proyecto/TendalProject/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-pp6xtapkiv

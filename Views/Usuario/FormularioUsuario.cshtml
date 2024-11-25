@@ -1,0 +1,189 @@
+@model TendalProject.Models.Usuario
+
+<style>
+    /* Contenedor principal centrado */
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-size: 15px;
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #0e7913;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #0e7913;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #0e7913;
+        box-shadow: 0 0 5px rgba(14, 121, 19, 0.5);
+    }
+
+    .text-danger {
+        color: #BF127B;
+        text-align: center;
+    }
+
+    .btn-primary,
+    .btn-warning {
+        border-radius: 20px;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .btn-warning {
+        background-color: #BF127B;
+        border-color: #BF127B;
+    }
+
+    .btn-warning:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    /* Estilo para agrupar campos en filas */
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: space-between;
+    }
+
+    .form-group-half {
+        flex: 1;
+        min-width: 48%;
+    }
+
+    /* Ajustar select con opción de placeholder */
+    select.form-control option[disabled] {
+        display: none;
+    }
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h3>Formulario de Registro</h3>
+        <hr />
+        <form asp-action="RegistrarUsuario" method="post">
+            <div class="form-row">
+                <div class="form-group form-group-half">
+                    <label asp-for="NombreUsuario">Nombre único</label>
+                    <input asp-for="NombreUsuario" class="form-control" placeholder="Ingresa tu nombre único" />
+                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-half">
+                    <label asp-for="ApellidoPaterno">Apellido Paterno</label>
+                    <input asp-for="ApellidoPaterno" class="form-control" placeholder="Ingresa tu apellido paterno" />
+                    <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group form-group-half">
+                    <label asp-for="ApellidoMaterno">Apellido Materno</label>
+                    <input asp-for="ApellidoMaterno" class="form-control" placeholder="Ingresa tu apellido materno" />
+                    <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-half">
+                    <label asp-for="Celular">Número Celular</label>
+                    <input asp-for="Celular" class="form-control" placeholder="Ingresa tu número de celular" />
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group form-group-half">
+                    <label asp-for="Direccion">Dirección</label>
+                    <input asp-for="Direccion" class="form-control" placeholder="Ingresa tu dirección" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-half">
+                    <label asp-for="Correo">Correo Electrónico</label>
+                    <input asp-for="Correo" class="form-control" placeholder="Ingresa tu correo electrónico" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Clave">Contraseña</label>
+                <input asp-for="Clave" class="form-control" type="password" placeholder="Ingresa tu contraseña" />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdRol">Rol</label>
+                <select asp-for="IdRol" class="form-control">
+                    <option disabled selected>Seleccione</option>
+                    @foreach (var item in ViewBag.RolId)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="IdRol" class="text-danger"></span>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <a asp-action="ListaUsuarios" class="btn btn-warning">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

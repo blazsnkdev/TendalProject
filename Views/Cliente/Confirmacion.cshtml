@@ -1,0 +1,105 @@
+@{
+    var numeroVenta = TempData["NumeroVenta"] as string;
+    var totalProductos = TempData["TotalProductosSeleccionados"] as int?;
+}
+
+<style>
+    .confirmation-container {
+        margin-top: 5rem;
+        text-align: center;
+    }
+
+    .alert-success {
+        background-color: #0e7913; /* Verde */
+        color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .info-container {
+        background-color: #f8f9fa; /* Fondo suave similar al carrito */
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+    }
+
+    .highlight {
+        color: #cca403; /* Amarillo */
+        font-weight: bold;
+    }
+
+    .btn-back {
+        background-color: #ffcc00;
+        color: #000;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+
+    .btn-back:hover {
+        background-color: #e6b800; /* Amarillo más oscuro */
+    }
+
+    .btn-primary, .btn-danger {
+        border-radius: 20px;
+        color: #000000;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .btn-danger {
+        background-color: #BF127B;
+        border-color: #BF127B;
+    }
+
+    .btn-danger:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+</style>
+
+<div class="confirmation-container">
+    <h2 style="color: #000000;">Confirmación de Pedido</h2>
+
+    @if (numeroVenta != null && totalProductos.HasValue)
+    {
+        <div class="alert alert-success">
+            <p style="font-size: 1.2rem; font-weight: bold;">
+                ¡Gracias por tu compra, @ViewBag.NombreUsuario!
+            </p>
+        </div>
+
+        <div class="info-container">
+            <p>
+                <strong>Número de Venta:</strong> <span class="highlight">@numeroVenta</span>
+            </p>
+            <p>
+                <strong>Cantidad de Productos Comprados:</strong> <span class="highlight">@totalProductos</span>
+            </p>
+
+            
+                <a asp-controller="Cliente" asp-action="MisPedidos" class="btn btn-danger">Ver Historial</a>
+        
+                <a asp-controller="Cliente" asp-action="ListaProductos" class="btn btn-primary">Volver</a>
+        
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <p style="font-size: 1rem;">Ocurrio un error. Intente de nuevo.</p>
+        </div>
+    }
+</div>

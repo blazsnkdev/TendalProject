@@ -1,0 +1,63 @@
+@model IEnumerable<TendalProject.Models.Producto>
+
+<div class="container mt-5">
+
+    <!-- Carrusel de Productos -->
+    <div id="productosCarrusel">
+        @{
+            var productos = Model.ToList();
+            int totalProductos = productos.Count;
+            int numCarruseles = (int)Math.Ceiling((double)totalProductos / 9);
+        }
+
+        @for (int carruselIndex = 0; carruselIndex < numCarruseles; carruselIndex++)
+        {
+            <div id="carouselExampleControls-@carruselIndex" class="carousel slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @for (var i = carruselIndex * 9; i < Math.Min((carruselIndex + 1) * 9, totalProductos); i += 3)
+                    {
+                        <div class="carousel-item @(i == carruselIndex * 9 ? "active" : "")">
+                            <div class="container">
+                                <div class="row">
+                                    @foreach (var articulo in productos.Skip(i).Take(3))
+                                    {
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card h-100">
+                                                <img src="data:image;base64,@Convert.ToBase64String(articulo.Imagen)" alt="Producto" class="card-img-top" />
+                                                <div class="card-body">
+                                                    <h5 class="card-title" style="color: #581266;">@articulo.Nombre</h5>
+                                                    <p class="card-text">@articulo.Descripcion</p>
+                                                    <p class="card-text" style="font-weight: bold; color: #ffa500;">@articulo.Precio.ToString("C")</p>
+                                                    <form method="post" action="/Cliente/AgregarAlCarrito">
+                                                        <input type="hidden" name="CodigoProducto" value="@articulo.CodigoProducto" />
+                                                        <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-@carruselIndex" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-@carruselIndex" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="notification" class="notification" style="display: none;">
+    @if (TempData["Success"] != null)
+    {
+        <p>@TempData["Success"]</p>
+    }
+</div>

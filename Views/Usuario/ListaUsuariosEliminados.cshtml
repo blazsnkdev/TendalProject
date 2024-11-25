@@ -1,0 +1,208 @@
+@model IEnumerable<TendalProject.Models.Usuario>
+<style>
+    .btn-primary,
+    .btn-success,
+    .btn-danger {
+        margin: 5px;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: #000000;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .btn-danger {
+        background-color: #BF127B;
+        border-color: #BF127B;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .btn-primary,
+    .btn-danger {
+        border-radius: 20px;
+    }
+
+    .btn-icon {
+        background: none;
+        border: none;
+        color: #BF127B;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    .btn-icon:hover {
+        color: #cc00b1;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        color: #0e7913;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid #0e7913;
+        border-radius: 5px;
+    }
+
+    .pagination li a:hover {
+        background-color: #0e7913;
+        color: white;
+    }
+
+    .pagination .active a {
+        background-color: #0e7913;
+        color: white;
+        border: 1px solid #0e7913;
+    }
+
+    .pagination .disabled a {
+        color: #cccccc;
+        pointer-events: none;
+        border: 1px solid #cccccc;
+    }
+</style>
+
+<h1>Usuarios Desactivados</h1>
+
+<p>
+    <!-- Botones para filtrar los usuarios -->
+    <button onclick="window.location.href='@Url.Action("ListaUsuariosEliminados", new { roleFilter = 1 })'" class="btn btn-primary">
+        <i class="fas fa-user-shield"></i> Administradores
+    </button>
+    <button onclick="window.location.href='@Url.Action("ListaUsuariosEliminados", new { roleFilter = 2 })'" class="btn btn-primary">
+        <i class="fas fa-user-friends"></i> Clientes
+    </button>
+    <button onclick="window.location.href='@Url.Action("ListaUsuariosEliminados")'" class="btn btn-primary">
+        <i class="fas fa-users"></i> Todos
+    </button>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Celular</th>
+            <th>Dirección</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Registro</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.NombreUsuario</td>
+                <td>@usuario.ApellidoPaterno</td>
+                <td>@usuario.ApellidoMaterno</td>
+                <td>@usuario.Celular</td>
+                <td>@usuario.Direccion</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.IdRolNavigation.NombreRol</td>
+                <td>@usuario.Estado</td>
+                <td>@usuario.FechaRegistro</td>
+                <td>
+                    <form asp-action="ActivarUsuario" asp-route-id="@usuario.IdUsuario" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas activar este Usuario?');">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Paginación -->
+<ul class="pagination">
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <li><a href="@Url.Action("ListaUsuariosEliminados", new { roleFilter = ViewBag.RoleFilter, pageNumber = ViewBag.CurrentPage - 1 })">Anterior</a></li>
+    }
+    else
+    {
+        <li class="disabled"><a href="#">Anterior</a></li>
+    }
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i == ViewBag.CurrentPage)
+        {
+            <li class="active"><a href="#">@i</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("ListaUsuariosEliminados", new { roleFilter = ViewBag.RoleFilter, pageNumber = i })">@i</a></li>
+        }
+    }
+
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <li><a href="@Url.Action("ListaUsuariosEliminados", new { roleFilter = ViewBag.RoleFilter, pageNumber = ViewBag.CurrentPage + 1 })">Siguiente</a></li>
+    }
+    else
+    {
+        <li class="disabled"><a href="#">Siguiente</a></li>
+    }
+</ul>
+
+    <a asp-action="ListaUsuarios" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>

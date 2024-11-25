@@ -1,0 +1,157 @@
+@model TendalProject.Models.ProductoViewModel
+
+@{
+    ViewData["Title"] = "Registrar Producto";
+}
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h3>Registrar Producto</h3>
+        <hr />
+        <form asp-action="RegistrarProducto" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Nombre">Nombre del Producto</label>
+                <input asp-for="Nombre" class="form-control" placeholder="Nombre del producto" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descripcion">Descripción del Producto</label>
+                <textarea asp-for="Descripcion" class="form-control" placeholder="Descripción"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdCategoria">Categoria</label>
+                <select asp-for="IdCategoria" asp-items="ViewBag.Categorias" class="form-control"></select>
+                <span asp-validation-for="IdCategoria" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Precio">Precio Unitario</label>
+                <input asp-for="Precio" class="form-control" placeholder="Precio" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Stock">Stock</label>
+                <input asp-for="Stock" class="form-control" placeholder="Stock disponible" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdProveedor">Nombre del Proveedor</label>
+                <select asp-for="IdProveedor" asp-items="ViewBag.Proveedores" class="form-control"></select>
+                <span asp-validation-for="IdProveedor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImagenFile">Imagen</label>
+                <input asp-for="ImagenFile" type="file" class="form-control" />
+                <span asp-validation-for="ImagenFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Registrar Producto
+                </button>
+                <a asp-action="ListaProductos" class="btn btn-warning">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<style>
+    /* Copia el mismo estilo utilizado para las otras vistas */
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-size: 15px;
+    }
+
+    .form-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #0e7913;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #0e7913;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #0e7913;
+        box-shadow: 0 0 5px rgba(14, 121, 19, 0.5);
+    }
+
+    .text-danger {
+        color: #BF127B;
+        text-align: center;
+    }
+
+    .btn-primary, .btn-warning {
+        border-radius: 20px;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .btn-warning {
+        background-color: #BF127B;
+        border-color: #BF127B;
+    }
+
+    .btn-warning:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+</style>

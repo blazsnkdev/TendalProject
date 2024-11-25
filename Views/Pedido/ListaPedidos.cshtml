@@ -1,0 +1,291 @@
+@model IEnumerable<TendalProject.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Lista de Pedidos";
+    /*
+    var currentPage = ViewBag.CurrentPage ?? 1;
+    var totalPages = ViewBag.TotalPages ?? 1;*/
+}
+
+<h1>Pedidos</h1>
+
+
+<div class="d-flex justify-content-between mb-3">
+    <!-- Filtros a la izquierda -->
+    <div class="d-flex">
+        <div class="form-group mr-3">
+            <label for="searchNumeroPedido">Buscar por Número de Pedido:</label>
+            <input type="text" id="searchNumeroPedido" class="form-control" placeholder="Ingrese Número de Pedido">
+        </div>
+        <div class="form-group mr-3">
+            <label for="searchNombreUsuario">Buscar por Nombre de Usuario:</label>
+            <input type="text" id="searchNombreUsuario" class="form-control" placeholder="Ingrese nombre del cliente">
+        </div>
+    </div>
+
+    <!-- Botones a la derecha -->
+    <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-warning ml-3" data-toggle="modal" data-target="#entregarPedidoModal">
+            <i class="fas fa-truck"></i> Entregar Pedido
+        </button>
+        <a asp-action="ExportPedidosXlsx" class="btn btn-success ml-3">
+            <i class="fas fa-file-excel"></i> Exportar a Excel
+        </a>
+
+        
+    </div>
+</div>
+
+<!-- Tabla de Pedidos -->
+<table class="table table-striped" id="pedidosTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>Número de Pedido</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio a pagar</th>
+            <th>Estado</th>
+            <th>Fecha Pedido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td class="numero-pedido">@pedido.NumeroPedido</td>
+                <td class="nombre-usuario">@pedido.IdUsuarioNavigation.NombreUsuario</td>
+                <td>@pedido.IdProducto</td>
+                <td>@pedido.Cantidad</td>
+                <td>@pedido.Importe.ToString("C")</td>
+                <td>@pedido.IdEstadoNavigation.NombreEstado</td>
+                <td>@pedido.FechaPedido?.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li><a href="@Url.Action("ListaPedidos", new { page = ViewBag.CurrentPage - 1 })">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i> Anterior</a></li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="active"><a href="#">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("ListaPedidos", new { page = i })">@i</a></li>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li><a href="@Url.Action("ListaPedidos", new { page = ViewBag.CurrentPage + 1 })">
+                    <i class="fas fa-chevron-right"></i> Siguiente
+                </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-right"></i> Siguiente</a></li>
+        }
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal para Entregar Pedido -->
+<div class="modal fade" id="entregarPedidoModal" tabindex="-1" role="dialog" aria-labelledby="entregarPedidoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="entregarPedidoModalLabel">Entregar Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="entregarPedidoForm" method="post" asp-action="EntregarPedido">
+                    <div class="form-group">
+                        <label for="numeroPedido">Número de Pedido:</label>
+                        <input type="text" class="form-control" id="numeroPedido" name="numeroPedido" placeholder="Ingrese el número de venta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idMetodoPago">Método de Pago:</label>
+                        <select class="form-control" id="idMetodoPago" name="idMetodoPago" required>
+                            <option value="">Seleccione un método de pago</option>
+                            @foreach (var metodo in ViewBag.MetodosPago)
+                            {
+                                <option value="@metodo.IdMetodoPago">@metodo.Metodo</option>
+                            }
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-warning">Entregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Filtrado por Número de Pedido
+    document.getElementById('searchNumeroPedido').addEventListener('input', function() {
+        const filterNumeroPedido = this.value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#pedidosTable tbody tr');
+        rows.forEach(row => {
+            const numeroPedido = row.querySelector('.numero-pedido').textContent.toLowerCase();
+            if (numeroPedido.includes(filterNumeroPedido)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+
+    // Filtrado por Nombre de Usuario
+    document.getElementById('searchNombreUsuario').addEventListener('input', function() {
+        const filterNombreUsuario = this.value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#pedidosTable tbody tr');
+        rows.forEach(row => {
+            const nombreUsuario = row.querySelector('.nombre-usuario').textContent.toLowerCase();
+            if (nombreUsuario.includes(filterNombreUsuario)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<style>
+
+
+    .btn-primary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning {
+        margin: 5px;
+    }
+
+    .btn-warning {
+        background-color: #BF127B;
+        border-color: #BF127B;
+        color: #ffffff;
+    }
+
+    .btn-warning:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .btn-success {
+        background-color: #1fa11a;
+        border-color: #1fa11a;
+        color: #ffffff;
+        
+    }
+
+    .btn-success:hover {
+        background-color: #6dfa2b;
+        border-color: #6dfa2b;
+        color: #000000;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        color: #0e7913;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid #0e7913;
+        border-radius: 5px;
+    }
+
+    .pagination li a:hover {
+        background-color: #0e7913;
+        color: white;
+    }
+
+    .pagination .active a {
+        background-color: #0e7913;
+        color: white;
+        border: 1px solid #0e7913;
+    }
+
+    .pagination .disabled a {
+        color: #cccccc;
+        pointer-events: none;
+        border: 1px solid #cccccc;
+    }
+
+    /* Estilo para separar los inputs */
+    .form-group {
+        margin-right: 35px;
+    }
+
+    /* Botones alineados a la derecha 
+    .d-flex.align-items-center {
+        display: flex;
+        justify-content: flex-end;
+    }*/
+</style>

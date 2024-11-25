@@ -1,0 +1,201 @@
+@model IEnumerable<TendalProject.Models.Proveedor>
+
+@{
+    ViewData["Title"] = "Proveedores Activos";
+}
+
+<h1>Proveedores Disponibles</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre del Proveedor</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+            <th>Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var proveedor in Model)
+        {
+            <tr>
+                <td>@proveedor.IdProveedor</td>
+                <td>@proveedor.NombreProveedor</td>
+                <td>@proveedor.Telefono</td>
+                <td>@proveedor.Direccion</td>
+                <td>@proveedor.Estado</td>
+                <td>@proveedor.FechaServicio?.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="ActualizarProveedor" asp-route-id="@proveedor.IdProveedor" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> 
+                    </a>
+                    <form asp-action="EliminarProveedor" asp-route-id="@proveedor.IdProveedor" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este proveedor?');">
+                            <i class="fas fa-trash"></i> 
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li><a href="@Url.Action("ListaProveedores", new { pageNumber = ViewBag.CurrentPage - 1 })">
+                <i class="fas fa-chevron-left"></i> Anterior
+            </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i> Anterior</a></li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="active"><a href="#">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("ListaProveedores", new { pageNumber = i })">@i</a></li>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li><a href="@Url.Action("ListaProveedores", new { pageNumber = ViewBag.CurrentPage + 1 })">
+                <i class="fas fa-chevron-right"></i> Siguiente
+            </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-right"></i> Siguiente</a></li>
+        }
+    </ul>
+</div>
+
+<a asp-action="RegistrarProveedor" class="btn btn-danger">
+    <i class="fas fa-plus"></i> Agregar
+</a>
+<a asp-action="ListaProveedoresDesactivados" class="btn btn-primary">
+    <i class="fas fa-trash-alt"></i> Eliminados
+</a>
+
+<style>
+    .btn-primary, .btn-success, .btn-danger, .btn-warning {
+        margin: 5px;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: #000000;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800;
+        border-color: #e6b800;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .btn-danger {
+        background-color: #BF127B;
+        border-color: #BF127B;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #e0a800;
+    }
+        .btn-primary, .btn-danger {
+        border-radius: 20px; /* Botones redondeados */
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        color: #0e7913;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid #0e7913;
+        border-radius: 5px;
+    }
+
+    .pagination li a:hover {
+        background-color: #0e7913;
+        color: white;
+    }
+
+    .pagination .active a {
+        background-color: #0e7913;
+        color: white;
+        border: 1px solid #0e7913;
+    }
+
+    .pagination .disabled a {
+        color: #cccccc;
+        pointer-events: none;
+        border: 1px solid #cccccc;
+    }
+</style>

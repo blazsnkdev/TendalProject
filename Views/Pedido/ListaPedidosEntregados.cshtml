@@ -1,0 +1,215 @@
+@model IEnumerable<TendalProject.Models.PedidoEntregado>
+
+@{
+    ViewData["Title"] = "Lista de Pedidos Entregados";
+}
+
+<h1>Pedidos Entregados</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Filtros a la izquierda -->
+    <div class="d-flex">
+        <div class="form-group mr-4"> <!-- Margen a la derecha -->
+            <label for="buscarNumeroPedido">Buscar por Número de Pedido:</label>
+            <input type="text" id="buscarNumeroPedido" class="form-control" placeholder="Ingrese Número de Pedido">
+        </div>
+        <div class="form-group"> <!-- Sin margen a la izquierda -->
+            <label for="buscarNombreCliente">Buscar por Nombre de Usuario:</label>
+            <input type="text" id="buscarNombreCliente" class="form-control" placeholder="Ingrese nombre del cliente">
+        </div>
+    </div>
+
+    <!-- Botón de Exportación a la derecha -->
+    <div>
+        <a asp-action="ExportPedidosEntregadosXlsx" class="btn btn-success">
+            <i class="fas fa-file-excel"></i> Exportar a Excel
+        </a>
+    </div>
+</div>
+
+<table class="table table-striped" id="pedidosTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>Número de Pedido</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Importe</th>
+            <th>Estado</th>
+            <th>Método de Pago</th>
+            <th>Fecha de Pedido</th>
+            <th>Fecha de Entrega</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td class="numero-pedido">@pedido.NumeroPedido</td>
+                <td class="nombre-usuario">@pedido.IdUsuarioNavigation.NombreUsuario</td>
+                <td>@pedido.IdProducto</td>
+                <td>@pedido.Cantidad</td>
+                <td>@pedido.Importe.ToString("C")</td>
+                <td>@pedido.Estado</td>
+                <td>@pedido.IdMetodoPagoNavigation.Metodo</td>
+                <td>@pedido.FechaPedido?.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@pedido.FechaEntrega?.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li><a href="@Url.Action("ListaPedidosEntregados", new { pagina = ViewBag.CurrentPage - 1 })">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i> Anterior</a></li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="active"><a href="#">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("ListaPedidosEntregados", new { pagina = i })">@i</a></li>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li><a href="@Url.Action("ListaPedidosEntregados", new { pagina = ViewBag.CurrentPage + 1 })">
+                    <i class="fas fa-chevron-right"></i> Siguiente
+                </a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-right"></i> Siguiente</a></li>
+        }
+    </ul>
+</div>
+
+<script>
+    document.getElementById('buscarNumeroPedido').addEventListener('input', function () {
+        const filterNumeroPedido = this.value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#pedidosTable tbody tr');
+        rows.forEach(row => {
+            const numeroPedido = row.querySelector('.numero-pedido').textContent.toLowerCase();
+            if (numeroPedido.includes(filterNumeroPedido)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+
+    document.getElementById('buscarNombreCliente').addEventListener('input', function () {
+        const filterNombreUsuario = this.value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#pedidosTable tbody tr');
+        rows.forEach(row => {
+            const nombreUsuario = row.querySelector('.nombre-usuario').textContent.toLowerCase();
+            if (nombreUsuario.includes(filterNombreUsuario)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<style>
+    .form-group {
+        margin-right: 35px; /* Ajusta este valor para más separación */
+    }
+
+    .btn-success {
+        margin-left: 20px; /* Espacio a la izquierda del botón */
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        color: #0e7913;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid #0e7913;
+        border-radius: 5px;
+    }
+
+    .pagination li a:hover {
+        background-color: #0e7913;
+        color: white;
+    }
+
+    .pagination .active a {
+        background-color: #0e7913;
+        color: white;
+        border: 1px solid #0e7913;
+    }
+
+    .pagination .disabled a {
+        color: #cccccc;
+        pointer-events: none;
+        border: 1px solid #cccccc;
+    }
+    .btn-success {
+        background-color: #1fa11a;
+        border-color: #1fa11a;
+        color: #ffffff;
+    }
+
+    .btn-success:hover {
+        background-color: #6dfa2b;
+        border-color: #6dfa2b;
+    }
+</style>

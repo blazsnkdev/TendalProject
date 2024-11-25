@@ -1,0 +1,267 @@
+@model TendalProject.Models.CarritoViewModel
+
+<style>
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #0e7913;
+        color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #ffe066;
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00; /* Color amarillo */
+        border-color: #ffcc00;
+        color: #000000;
+        padding: 8px 16px;
+        border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6b800; /* Un amarillo más oscuro */
+        border-color: #e6b800;
+    }
+
+    .btn-danger {
+        background-color: #BF127B;
+        border-color: #BF127B;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 8px;
+    }
+
+    .btn-danger:hover {
+        background-color: #cc00b1;
+        border-color: #cc00b1;
+        color: #000000;
+    }
+
+    .btn-primary,
+    .btn-danger,
+    .btn-outline-secondary {
+        border-radius: 20px; /* Botones redondeados */
+    }
+
+    .btn-icon {
+        background: none;
+        border: none;
+        color: #ff4d4d;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    .btn-icon:hover {
+        color: #cc0000;
+    }
+
+    .notification {
+        position: fixed;
+        bottom: 20px; /* Aparece en la parte inferior */
+        right: 20px; /* Aparece a la derecha */
+        background-color: #175210; /* Color verde oscuro */
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        transition: opacity 0.5s ease;
+        opacity: 0; /* Comienza invisible */
+    }
+
+    .notification.show {
+        opacity: 1; /* Se mostrará al agregar esta clase */
+    }
+
+    .card {
+        border-radius: 10px;
+        border: 1px solid #dee2e6;
+        padding: 15px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-body {
+        font-size: 14px;
+        color: #555555;
+    }
+
+    .card-footer {
+        text-align: right;
+    }
+
+    /* Estilo para el card cuando el carrito está vacío */
+    .empty-cart-card {
+        background-color: #f8f9fa; /* Fondo suave */
+        border-radius: 15px; /* Bordes redondeados */
+        border: 1px solid #dee2e6; /* Borde suave */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        margin-top: 30px; /* Separación desde arriba */
+        padding: 20px;
+    }
+
+    /* Título en el card */
+    .empty-cart-card .card-header {
+        background-color: #0e7913; /* Color de fondo verde */
+        color: #fff; /* Texto blanco */
+        font-size: 1.5rem; /* Título más grande */
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    /* Mensaje del cuerpo del card */
+    .empty-cart-card .empty-cart-message {
+        font-size: 1.2rem; /* Texto más grande y legible */
+        color: #333; /* Color oscuro para mayor contraste */
+        margin-bottom: 20px;
+    }
+
+    /* Botón en el card */
+    .empty-cart-card .btn-primary {
+        background-color: #ffcc00; /* Color amarillo */
+        border-color: #ffcc00;
+        color: #000000;
+        padding: 12px 24px; /* Botón más grande */
+        border-radius: 8px;
+        font-size: 1.1rem; /* Texto del botón más grande */
+    }
+
+    .empty-cart-card .btn-primary:hover {
+        background-color: #e6b800; /* Un amarillo más oscuro */
+        border-color: #e6b800;
+    }
+</style>
+
+<h3>Tu Carrito de Compras</h3>
+
+@if (Model.Items.Count == 0)
+{
+    <div class="card empty-cart-card">
+        <div class="card-header text-center">
+            <h4 class="card-title">¡Tu carrito está vacío!</h4>
+        </div>
+        <div class="card-body text-center">
+            <p class="empty-cart-message">
+                Seleccione los productos de nuestra carrusel. Luego, podrás realizar tu pedido y ver tu número de venta. También podrás consultar tu historial de pedidos.
+            </p>
+
+            <a asp-controller="Cliente" asp-action="ListaProductos" class="btn btn-primary">Ver los productos</a>
+        </div>
+
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Producto.Nombre</td>
+                    <td>@item.Producto.Descripcion</td>
+                    <td>
+                        <form method="post" asp-action="ActualizarCantidad">
+                            <input type="number" name="nuevaCantidad" min="1" max="@item.Producto.Stock" value="@item.Cantidad"
+                                onchange="this.form.submit()" class="form-control" style="width: 80px; margin: 0 auto;" />
+                            <input type="hidden" name="codigoProducto" value="@item.Producto.CodigoProducto" />
+                        </form>
+                    </td>
+
+                    <td>@item.Producto.Precio.ToString("C")</td>
+                    <td>@item.Total.ToString("C")</td>
+                    <td>
+                        <form method="post" asp-action="EliminarDelCarrito">
+                            <input type="hidden" name="codigoProducto" value="@item.Producto.CodigoProducto" />
+                            <button type="submit" class="btn-icon"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end">
+        <h5>Total del Carrito: @Model.Total.ToString("C")</h5>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a asp-controller="Cliente" asp-action="ListaProductos" class="btn btn-primary me-2">Seguir Comprando</a>
+
+        <form method="post" asp-action="Pedir" asp-controller="Cliente">
+            <button type="submit" class="btn btn-danger">Generar Pedido</button>
+        </form>
+    </div>
+}
+
+<div id="notification" class="notification" style="display: none;">
+    @if (TempData["Success"] != null)
+    {
+        <p>@TempData["Success"]</p>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <p>@TempData["Error"]</p>
+    }
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var notification = document.getElementById('notification');
+
+        // Verifica si hay mensaje
+        if (notification.innerHTML.trim() !== '') {
+            notification.style.display = 'block'; // Muestra la notificación
+            notification.classList.add('show'); // Muestra la notificación
+            setTimeout(function () {
+                notification.classList.remove('show'); // Oculta la notificación
+                setTimeout(function () {
+                    notification.style.display = 'none'; // Cambia el display a none 
+                }, 500); // Tiempo para que desaparezca después de la animación 
+            }, 3000); // Duración en milisegundos (3 segundos) 
+        }
+    });
+</script>
+
+
+
