@@ -13,32 +13,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TendalProject.Models;
 using TendalProject.Service;
-
-
 namespace TendalProject.Controllers
-
-
 {
-
     public class UsuarioController : Controller
     {
 
         private readonly BdTendalDefinitivoContext _context;
         private readonly UsuarioService _usuarioService; 
-
         public UsuarioController(BdTendalDefinitivoContext context, UsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
             _context = context;
         }
 
-
         public IActionResult Login()
         {
             return View();
         }
 
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string correo, string clave)
@@ -123,7 +115,6 @@ namespace TendalProject.Controllers
                 return View("Login");
             }
         }
-
 
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> ListaUsuarios(int? roleFilter = null, int pageNumber = 1, int pageSize = 4)
@@ -318,7 +309,6 @@ namespace TendalProject.Controllers
 
             return RedirectToAction(nameof(ListaUsuarios)); 
         }
-
 
     }
 }

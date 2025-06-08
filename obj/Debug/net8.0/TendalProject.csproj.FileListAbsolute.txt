@@ -105,7 +105,6 @@ C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalP
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\System.Text.Json.dll
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\XLParser.dll
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\ar\Humanizer.resources.dll
@@ -287,3 +286,8 @@ C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalP
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\TendalProject.pdb
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\TendalProject.genruntimeconfig.cache
 C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\ref\TendalProject.dll
+C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\TendalProject.sourcelink.json
+C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\bin\Debug\net8.0\TendalProject.staticwebassets.endpoints.json
+C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\staticwebassets\msbuild.TendalProject.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\blas\cibertec\sexto ciclo\proyecto integrador\proyecto final\proyecto\TendalProject\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

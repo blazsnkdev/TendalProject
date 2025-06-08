@@ -16,7 +16,6 @@ namespace TendalProject.Controllers
             _context = context;
         }
 
-        
         public IActionResult Dashboard(){
             var nombreUsuario = HttpContext.Session.GetString("NombreUsuario");
             ViewBag.NombreUsuario = nombreUsuario;
@@ -110,9 +109,6 @@ namespace TendalProject.Controllers
 
             return View();
         }
-
-
-
 
 
     }

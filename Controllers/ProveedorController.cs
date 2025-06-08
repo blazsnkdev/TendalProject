@@ -14,7 +14,7 @@ namespace TendalProject.Controllers
     public class ProveedorController : Controller
     {
 
-        private readonly BdTendalDefinitivoContext _context; // Reemplaza con tu contexto real
+        private readonly BdTendalDefinitivoContext _context; 
 
         public ProveedorController(BdTendalDefinitivoContext context)
         {

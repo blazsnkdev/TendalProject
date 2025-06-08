@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TendalProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+037c9e7545f6f4cf448bc6c19c1101d5589373d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TendalProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TendalProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

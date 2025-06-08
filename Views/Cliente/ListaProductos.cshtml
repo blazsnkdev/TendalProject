@@ -74,23 +74,23 @@
         opacity: 1;
     }
 
-    /* Estilos para el filtro por categoría y la barra de búsqueda */
+   
     .search-container {
         display: flex;
-        justify-content: center; /* Centrado de los elementos */
+        justify-content: center;
         align-items: center;
-        gap: 15px; /* Espacio entre los elementos */
-        width: 100%; /* Asegura que ocupe todo el espacio disponible */
-        max-width: 800px; /* Establece un límite de ancho */
-        margin: 0 auto; /* Centrado horizontal */
+        gap: 15px; 
+        width: 100%; 
+        max-width: 800px;
+        margin: 0 auto; 
     }
 
     .filtro-categoria select,
     .search-container input {
-        width: 250px; /* Ajustar el tamaño de todos los elementos */
+        width: 250px; 
         padding: 10px;
         font-size: 16px;
-        border-radius: 5px; /* Bordes rectos para todos */
+        border-radius: 5px; 
         border: 1px solid #ddd;
     }
 
@@ -104,31 +104,31 @@
     }
 
     .search-container input {
-        width: 250px; /* Reducir el tamaño de la barra de búsqueda */
+        width: 250px; 
     }
 
     .search-container button,
     .btn-back {
-        background-color: #0e7913; /* Color de fondo */
-        border: none; /* Sin borde */
-        color: white; /* Color del texto */
-        padding: 8px 15px; /* Ajustar el tamaño */
-        font-size: 16px; /* Tamaño de fuente */
-        border-radius: 5px; /* Bordes redondeados */
-        cursor: pointer; /* Cambia el cursor al pasar por encima */
-        transition: background-color 0.3s; /* Transición suave */
-        text-decoration: none; /* Quitar subrayado */
+        background-color: #0e7913; 
+        border: none; 
+        color: white; 
+        padding: 8px 15px; 
+        font-size: 16px;
+        border-radius: 5px; 
+        cursor: pointer;
+        transition: background-color 0.3s; 
+        text-decoration: none;
     }
 
     .search-container button:hover,
     .btn-back:hover {
-        background-color: #9deca1; /* Color al pasar el ratón */
+        background-color: #9deca1; 
     }
 </style>
 
 <div class="container mt-5">
 
-    <!-- Barra de búsqueda, filtro de categoría y botón de volver -->
+
     <div class="search-container">
         <div class="filtro-categoria">
             <select id="filtroCategoria" class="form-select" onchange="filtrarPorCategoria()">

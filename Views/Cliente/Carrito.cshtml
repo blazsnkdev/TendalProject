@@ -7,46 +7,38 @@
         color: #212529;
         border-collapse: collapse;
     }
-
     .table th,
     .table td {
         padding: 0.75rem;
         vertical-align: top;
         border-top: 1px solid #dee2e6;
     }
-
     .table thead th {
         vertical-align: bottom;
         border-bottom: 2px solid #dee2e6;
         background-color: #0e7913;
         color: #fff;
     }
-
     .table tbody tr:nth-of-type(odd) {
         background-color: #f8f9fa;
     }
-
     .table tbody tr:hover {
         background-color: #ffe066;
     }
-
     .table tbody td {
         border-bottom: 1px solid #dee2e6;
     }
-
     .btn-primary {
-        background-color: #ffcc00; /* Color amarillo */
+        background-color: #ffcc00;
         border-color: #ffcc00;
         color: #000000;
         padding: 8px 16px;
         border-radius: 8px;
     }
-
     .btn-primary:hover {
-        background-color: #e6b800; /* Un amarillo más oscuro */
+        background-color: #e6b800; 
         border-color: #e6b800;
     }
-
     .btn-danger {
         background-color: #BF127B;
         border-color: #BF127B;
@@ -54,19 +46,16 @@
         padding: 8px 16px;
         border-radius: 8px;
     }
-
     .btn-danger:hover {
         background-color: #cc00b1;
         border-color: #cc00b1;
         color: #000000;
     }
-
     .btn-primary,
     .btn-danger,
     .btn-outline-secondary {
-        border-radius: 20px; /* Botones redondeados */
+        border-radius: 20px;
     }
-
     .btn-icon {
         background: none;
         border: none;
@@ -74,28 +63,24 @@
         font-size: 1.2em;
         cursor: pointer;
     }
-
     .btn-icon:hover {
         color: #cc0000;
     }
-
     .notification {
         position: fixed;
-        bottom: 20px; /* Aparece en la parte inferior */
-        right: 20px; /* Aparece a la derecha */
-        background-color: #175210; /* Color verde oscuro */
+        bottom: 20px; 
+        right: 20px; 
+        background-color: #175210; 
         color: white;
         padding: 15px;
         border-radius: 5px;
-        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        z-index: 1000; 
         transition: opacity 0.5s ease;
-        opacity: 0; /* Comienza invisible */
+        opacity: 0; 
     }
-
     .notification.show {
-        opacity: 1; /* Se mostrará al agregar esta clase */
+        opacity: 1;
     }
-
     .card {
         border-radius: 10px;
         border: 1px solid #dee2e6;
@@ -104,64 +89,51 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-top: 20px;
     }
-
     .card-header {
         font-size: 18px;
         font-weight: bold;
         color: #333;
     }
-
     .card-body {
         font-size: 14px;
         color: #555555;
     }
-
     .card-footer {
         text-align: right;
     }
-
-    /* Estilo para el card cuando el carrito está vacío */
     .empty-cart-card {
-        background-color: #f8f9fa; /* Fondo suave */
-        border-radius: 15px; /* Bordes redondeados */
-        border: 1px solid #dee2e6; /* Borde suave */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-        margin-top: 30px; /* Separación desde arriba */
+        background-color: #f8f9fa; 
+        border-radius: 15px; 
+        border: 1px solid #dee2e6; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        margin-top: 30px; 
         padding: 20px;
     }
-
-    /* Título en el card */
     .empty-cart-card .card-header {
-        background-color: #0e7913; /* Color de fondo verde */
-        color: #fff; /* Texto blanco */
-        font-size: 1.5rem; /* Título más grande */
+        background-color: #0e7913;
+        color: #fff; 
+        font-size: 1.5rem; 
         padding: 15px;
         border-radius: 10px;
     }
-
-    /* Mensaje del cuerpo del card */
     .empty-cart-card .empty-cart-message {
-        font-size: 1.2rem; /* Texto más grande y legible */
-        color: #333; /* Color oscuro para mayor contraste */
+        font-size: 1.2rem; 
+        color: #333; 
         margin-bottom: 20px;
     }
-
-    /* Botón en el card */
     .empty-cart-card .btn-primary {
-        background-color: #ffcc00; /* Color amarillo */
+        background-color: #ffcc00; 
         border-color: #ffcc00;
         color: #000000;
-        padding: 12px 24px; /* Botón más grande */
+        padding: 12px 24px; 
         border-radius: 8px;
-        font-size: 1.1rem; /* Texto del botón más grande */
+        font-size: 1.1rem;
     }
-
     .empty-cart-card .btn-primary:hover {
-        background-color: #e6b800; /* Un amarillo más oscuro */
+        background-color: #e6b800; 
         border-color: #e6b800;
     }
 </style>
-
 <h3>Tu Carrito de Compras</h3>
 
 @if (Model.Items.Count == 0)
@@ -249,16 +221,15 @@ else
     document.addEventListener('DOMContentLoaded', function () {
         var notification = document.getElementById('notification');
 
-        // Verifica si hay mensaje
         if (notification.innerHTML.trim() !== '') {
-            notification.style.display = 'block'; // Muestra la notificación
-            notification.classList.add('show'); // Muestra la notificación
+            notification.style.display = 'block'; 
+            notification.classList.add('show');
             setTimeout(function () {
-                notification.classList.remove('show'); // Oculta la notificación
+                notification.classList.remove('show'); 
                 setTimeout(function () {
-                    notification.style.display = 'none'; // Cambia el display a none 
-                }, 500); // Tiempo para que desaparezca después de la animación 
-            }, 3000); // Duración en milisegundos (3 segundos) 
+                    notification.style.display = 'none'; 
+                }, 500); 
+            }, 3000); 
         }
     });
 </script>

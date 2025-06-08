@@ -2,9 +2,7 @@
 
 @{
     ViewData["Title"] = "Lista de Pedidos";
-    /*
-    var currentPage = ViewBag.CurrentPage ?? 1;
-    var totalPages = ViewBag.TotalPages ?? 1;*/
+
 }
 
 <h1>Pedidos</h1>
@@ -103,15 +101,6 @@
     </ul>
 </div>
 
-
-
-
-
-
-
-
-
-<!-- Modal para Entregar Pedido -->
 <div class="modal fade" id="entregarPedidoModal" tabindex="-1" role="dialog" aria-labelledby="entregarPedidoModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,7 +135,6 @@
 </div>
 
 <script>
-    // Filtrado por Número de Pedido
     document.getElementById('searchNumeroPedido').addEventListener('input', function() {
         const filterNumeroPedido = this.value.toLowerCase().trim();
         const rows = document.querySelectorAll('#pedidosTable tbody tr');
@@ -160,7 +148,6 @@
         });
     });
 
-    // Filtrado por Nombre de Usuario
     document.getElementById('searchNombreUsuario').addEventListener('input', function() {
         const filterNombreUsuario = this.value.toLowerCase().trim();
         const rows = document.querySelectorAll('#pedidosTable tbody tr');

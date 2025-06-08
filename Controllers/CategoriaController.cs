@@ -8,13 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TendalProject.Models;
 
-
 namespace TendalProject.Controllers
 {
-
     public class CategoriaController : Controller
     {
-
         private readonly BdTendalDefinitivoContext _context;
 
         public CategoriaController(BdTendalDefinitivoContext context)
@@ -41,7 +38,7 @@ namespace TendalProject.Controllers
             return View(categoriasActivas);
         }
 
-        // GET: Categorium/Create
+
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistrarCategoria()
         {
@@ -50,7 +47,7 @@ namespace TendalProject.Controllers
             return View();
         }
 
-        // POST: Categorium/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
@@ -70,7 +67,6 @@ namespace TendalProject.Controllers
             return View(categoria); // Si hay errores, vuelve a mostrar el formulario
         }
 
-        // GET: Categorium/Edit/5
         [Authorize(Roles = "Administrador")]
         public IActionResult ActualizarCategoria(int id)
         {
@@ -84,7 +80,7 @@ namespace TendalProject.Controllers
             return View(categoria);
         }
 
-        // POST: Categorium/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
@@ -117,7 +113,6 @@ namespace TendalProject.Controllers
             return View(categoriaActualizada); // Si hay errores, vuelve a mostrar el formulario
         }
 
-        // POST: Categorium/Desactivar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
@@ -137,7 +132,6 @@ namespace TendalProject.Controllers
             return RedirectToAction(nameof(ListaCategorias));
         }
 
-
         [Authorize(Roles = "Administrador")]
         public IActionResult ListaCategoriasDesactivadas(int pageNumber = 1, int pageSize = 5)
         {
@@ -155,7 +149,6 @@ namespace TendalProject.Controllers
             return View(categoriasEliminadas);
         }
 
-        // POST: Categorium/Activar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]

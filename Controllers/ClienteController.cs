@@ -11,11 +11,10 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using TendalProject.Models;
 using Microsoft.EntityFrameworkCore;
-using Rotativa.AspNetCore; // Asegúrate de tener instalada Rotativa.AspNetCore
-using System.Text.Json;//export pdf
+using Rotativa.AspNetCore;
+using System.Text.Json;
 namespace TendalProject.Controllers
 {
-
     public class ClienteController : Controller
     {
 
@@ -159,7 +158,6 @@ namespace TendalProject.Controllers
             return RedirectToAction("Carrito");
         }
 
-
         [HttpPost]
         [Authorize(Roles = "Cliente")]
         public IActionResult Pedir()
@@ -227,83 +225,6 @@ namespace TendalProject.Controllers
             return RedirectToAction("Confirmacion");
         }
 
-        /*
-
-        [HttpPost]
-        [Authorize(Roles = "Cliente")]
-        public IActionResult Pedir()
-        {
-            // Obtén el id del usuario de la sesión
-            var idUsuario = HttpContext.Session.GetInt32("IdUsuario");
-
-            // Verifica si la sesión ha expirado
-            if (idUsuario == null)
-            {
-                TempData["Error"] = "Sesión no iniciada. Por favor, inicie sesión para continuar.";
-                return RedirectToAction("Login", "Usuario"); // Redirige a la página de inicio o de inicio de sesión
-            }
-
-            // Obtener el último pedido para generar el nuevo número de pedido
-            var ultimoNumeroPedido = _context.Pedidos
-                .OrderByDescending(v => v.IdPedido)
-                .Select(v => v.NumeroPedido)
-                .FirstOrDefault();
-
-            int numeroPedidoActual = 1; // Comenzamos desde 1
-            if (!string.IsNullOrEmpty(ultimoNumeroPedido) &&
-                ultimoNumeroPedido.StartsWith("PE") &&
-                int.TryParse(ultimoNumeroPedido.Substring(2), out int ultimoNumero))
-            {
-                numeroPedidoActual = ultimoNumero + 1; // Incrementamos el último número
-            }
-
-            string nuevoNumeroPedido = $"PE{numeroPedidoActual:D4}"; // Generamos el nuevo número en el formato "PE0001"
-
-            int totalProductosSeleccionados = 0; // Para contar el total de productos únicos seleccionados
-
-            // Recorre los productos en el carrito, crea un pedido por cada uno y actualiza el stock
-            foreach (var item in _carrito.Items)
-            {
-                // Para contar solo los productos únicos seleccionados
-                totalProductosSeleccionados++;
-
-                var pedido = new Pedido
-                {
-                    NumeroPedido = nuevoNumeroPedido,
-                    IdUsuario = idUsuario ?? 0,
-                    IdProducto = item.Producto.CodigoProducto,
-                    Cantidad = item.Cantidad,
-                    Importe = item.Total,
-                    IdEstado = 1, // Suponiendo que el estado por defecto es "Pendiente". Ajusta según tu lógica.
-                    FechaPedido = DateTime.Now
-                };
-
-                _context.Pedidos.Add(pedido);
-
-                // Actualiza el stock del producto correspondiente
-                var producto = _context.Productos.FirstOrDefault(p => p.CodigoProducto == item.Producto.CodigoProducto);
-                if (producto != null)
-                {
-                    producto.Stock -= item.Cantidad;
-                    if (producto.Stock < 0) producto.Stock = 0; // Asegúrate de que el stock no sea negativo
-                }
-            }
-
-            // Guarda los cambios en la base de datos
-            _context.SaveChanges();
-
-            // Almacena el número de pedido y la cantidad total de productos seleccionados en TempData
-            TempData["NumeroVenta"] = nuevoNumeroPedido;
-            TempData["TotalProductosSeleccionados"] = totalProductosSeleccionados;
-
-            // Limpia el carrito después de realizar el pedido
-            LimpiarCarrito();
-
-            // Redirige a una página de confirmación
-            return RedirectToAction("Confirmacion");
-        }
-
-*/
         [Authorize(Roles = "Cliente")]
         public IActionResult Confirmacion()
         {
@@ -348,7 +269,6 @@ namespace TendalProject.Controllers
 
             return View(pedidos);  // Pasar los pedidos a la vista
         }
-
 
     }
 }

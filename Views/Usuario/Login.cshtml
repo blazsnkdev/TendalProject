@@ -1,13 +1,10 @@
 @model TendalProject.Models.Usuario
-
 @{
     ViewBag.Title = "Inicio de Sesión";
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,17 +17,15 @@
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
         }
-
         body {
-            background-color: #FEE315 ; /* Amarillo */
-            background: linear-gradient(to right, #FFEB3B, #FFEB3B); /* Amarillo */
+            background-color: #FEE315 ; 
+            background: linear-gradient(to right, #FFEB3B, #FFEB3B); 
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             height: 100vh;
         }
-
         .container {
             background-color: #fff;
             border-radius: 30px;
@@ -38,33 +33,29 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            max-width: 870px; /* Contenedor más grande */
-            min-height: 800px; /* Contenedor más largo */
+            max-width: 870px;
+            min-height: 800px; 
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .container p {
             font-size: 14px;
             line-height: 20px;
             letter-spacing: 0.3px;
             margin: 20px 0;
         }
-
         .container span {
             font-size: 12px;
         }
-
         .container a {
             color: #333;
             font-size: 13px;
             text-decoration: none;
             margin: 15px 0 10px;
         }
-
         .container button {
-            background-color: #000; /* Botón negro */
+            background-color: #000; 
             color: #fff;
             font-size: 12px;
             padding: 10px 45px;
@@ -76,7 +67,6 @@
             margin-top: 10px;
             cursor: pointer;
         }
-
         .container form {
             background-color: #fff;
             display: flex;
@@ -86,9 +76,8 @@
             padding: 0 40px;
             height: 100%;
             width: 100%;
-            max-width: 400px; /* Establecer un ancho máximo para los formularios */
+            max-width: 400px; 
         }
-
         .container input {
             background-color: #eee;
             border: none;
@@ -100,49 +89,41 @@
             outline: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: 0.3s ease-in-out;
-            text-align: center; /* Centra el texto dentro del input */
+            text-align: center; 
         }
-
         .container input:focus {
             box-shadow: 0 2px 8px rgba(81, 45, 168, 0.5);
             border-color: #512da8;
         }
-
         .container label {
             font-size: 14px;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
         }
-
         .container label i {
             margin-right: 8px;
-            color: #000; /* Iconos de color negro */
+            color: #000; 
         }
-
         .container .form-group {
             width: 100%;
             margin-bottom: 15px;
         }
-
         .form-container {
             position: absolute;
             top: 0;
             height: 100%;
             transition: all 0.6s ease-in-out;
         }
-
         .sign-in {
             left: 0;
             width: 50%;
             z-index: 2;
         }
-
         .container.active .sign-in {
             transform: translateX(100%);
             transition: transform 0.6s ease-in-out;
         }
-
         .sign-up {
             left: 0;
             width: 50%;
@@ -150,13 +131,11 @@
             z-index: 1;
             transition: all 0.6s ease-in-out;
         }
-
         .container.active .sign-up {
             transform: translateX(100%);
             opacity: 1;
             z-index: 5;
         }
-
         .toggle-container {
             position: absolute;
             top: 0;
@@ -168,29 +147,23 @@
             border-radius: 150px 0 0 100px;
             z-index: 1000;
         }
-
         .container.active .toggle-container {
             transform: translateX(-100%);
             border-radius: 0 150px 100px 0;
         }
-
         .toggle {
-            background-color: #63C396 ; /* Verde cuando está en Login */
+            background-color: #63C396 ; 
             height: 100%;
-            /*background: linear-gradient(to right, #0e7913, #cc00b1);*/
             color: #fff;
             position: relative;
             left: -100%;
             width: 200%;
             transition: transform 0.6s ease-in-out;
         }
-
-
         .container.active .toggle {
             transform: translateX(50%);
-            background-color: #BF127B ; /* Morado cuando cambia al registro */
+            background-color: #BF127B ; 
         }
-
         .toggle-panel {
             position: absolute;
             width: 50%;
@@ -204,31 +177,24 @@
             top: 0;
             transition: all 0.6s ease-in-out;
         }
-
         .toggle-left {
             transform: translateX(-200%);
         }
-
         .container.active .toggle-left {
             transform: translateX(0);
         }
-
         .toggle-right {
             right: 0;
             transform: translateX(0);
         }
-
         .container.active .toggle-right {
             transform: translateX(200%);
         }
     </style>
-
 </head>
-
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
-            
             <form class="sign-in" asp-action="Login" method="post">
                 <h2>INICIAR SESIÓN</h2>
                 <br>
@@ -243,13 +209,11 @@
                 <button class="button" id="btnLogin" type="submit">INICIAR SESIÓN</button>
             </form>
         </div>
-
         <div class="form-container sign-up">
             
             <form asp-action="RegistrarUsuarioLogin" method="post">
                 <h2>REGISTRATE</h2>
                 <br>
-
                 <div class="form-group">
                     <label><i class="fas fa-user"></i> Nombre</label>
                     <input asp-for="NombreUsuario" class="form-control" placeholder="Ingrese su nombre" />
@@ -288,7 +252,6 @@
                 <button class="button" type="submit">REGISTRARSE</button>
             </form>
         </div>
-
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
@@ -304,7 +267,6 @@
             </div>
         </div>
     </div>
-
     <script>
         const container = document.getElementById('container');
         const registerBtn = document.getElementById('register');
@@ -319,5 +281,4 @@
         });
     </script>
 </body>
-
 </html>

@@ -17,7 +17,6 @@ namespace TendalProject.Controllers
 
     public class PedidoController : Controller
     {
-
         private readonly BdTendalDefinitivoContext _context;
 
         public PedidoController(BdTendalDefinitivoContext context)

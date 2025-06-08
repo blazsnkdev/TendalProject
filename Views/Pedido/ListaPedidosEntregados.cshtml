@@ -7,19 +7,17 @@
 <h1>Pedidos Entregados</h1>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Filtros a la izquierda -->
     <div class="d-flex">
-        <div class="form-group mr-4"> <!-- Margen a la derecha -->
+        <div class="form-group mr-4"> 
             <label for="buscarNumeroPedido">Buscar por Número de Pedido:</label>
             <input type="text" id="buscarNumeroPedido" class="form-control" placeholder="Ingrese Número de Pedido">
         </div>
-        <div class="form-group"> <!-- Sin margen a la izquierda -->
+        <div class="form-group"> 
             <label for="buscarNombreCliente">Buscar por Nombre de Usuario:</label>
             <input type="text" id="buscarNombreCliente" class="form-control" placeholder="Ingrese nombre del cliente">
         </div>
     </div>
 
-    <!-- Botón de Exportación a la derecha -->
     <div>
         <a asp-action="ExportPedidosEntregadosXlsx" class="btn btn-success">
             <i class="fas fa-file-excel"></i> Exportar a Excel

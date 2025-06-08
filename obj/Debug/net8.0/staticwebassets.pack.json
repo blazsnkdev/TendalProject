@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\blas\\cibertec\\sexto ciclo\\proyecto integrador\\proyecto final\\proyecto\\TendalProject\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TendalProject.bundle.scp.css",
-      "PackagePath": "staticwebassets\\TendalProject.bundle.scp.css"
+      "PackagePath": "staticwebassets\\TendalProject.ohhhqjva7s.bundle.scp.css"
     },
     {
       "Id": "C:\\blas\\cibertec\\sexto ciclo\\proyecto integrador\\proyecto final\\proyecto\\TendalProject\\wwwroot\\css\\site.css",
@@ -251,6 +251,10 @@
     {
       "Id": "C:\\blas\\cibertec\\sexto ciclo\\proyecto integrador\\proyecto final\\proyecto\\TendalProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TendalProject.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TendalProject.Microsoft.AspNetCore.StaticWebAssets.props",

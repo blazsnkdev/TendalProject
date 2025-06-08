@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.Cookies; // Agrega este using
+using Microsoft.AspNetCore.Authentication.Cookies; 
 using Microsoft.EntityFrameworkCore;
 using TendalProject.Models;
 using TendalProject.Service;
